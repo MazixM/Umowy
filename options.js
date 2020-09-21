@@ -20,7 +20,6 @@ function addNewContract() {
         return "Podaj nazwę [3-20]";
     }
     if (isValidDate(dateFrom) && isValidDate(dateTo)) {
-        //AddNewContract
         var counter = storage.get("counter");
         if (counter == false) {
             counter = 0;
@@ -32,11 +31,10 @@ function addNewContract() {
             "dateFrom": dateFrom.getTime(),
             "dateTo": dateTo.getTime()
         };
-        var records = JSON.stringify(storage.get("records"));
-        if (records == 'false') {
+        var records = storage.get("records");
+        if (records == false) {
             records = {};
         }
-        records = JSON.parse(records);
         records[counter] = newContract;
         storage.set("records", records);
 
