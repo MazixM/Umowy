@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Opcje</title>
+  <meta charset="UTF-8" />
+  <script src="options.js"></script>
+  <script src="mainFunctions.js"></script>
+  <style>
+    *{
+      text-align: center;
+    }
+    button {
+      height: 30px;
+      width: 100%;
+      outline: none;
+    }
+    input{
+      width: 95%;
+    }
+    table,
+    td {
+      border: 1px solid black;  
+    }
+    td{
+      padding: 2px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="addNewContent">
+    <table>
+      <tr><td colspan="2">Dodaj nową umowę</td></tr>
+      <tr>
+        <td>
+          Nazwa:
+        </td>
+        <td>
+          <input type="text" id="name" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Data od:
+        </td>
+        <td>
+          <input type="date" id="dateFrom" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Data do:
+        </td>
+        <td>
+          <input type="date" id="dateTo" />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <span id="message"></span>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button id="addNew">Dodaj</button>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button style="color: red;" id="deleteAll">Usuń wszystkie</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>
+
+</html>
