@@ -57,7 +57,7 @@ function createTableFromLocalvalues(divId) {
     if (records == false || records == "false") {
         var url = location.href;
         var urlFilename = url.substring(url.lastIndexOf('/') + 1);
-        if (urlFilename = "options.html") {
+        if (urlFilename == "options.html") {
             document.getElementById(divId).innerHTML = "";
         }
 
