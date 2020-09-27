@@ -39,7 +39,7 @@ function ConvertTimeToString(time) {
     var yyyy = newData.getFullYear();
     return dd + '/' + mm + '/' + yyyy;
 }
-function IsJsonString(str) {
+function isJsonStringCorrect(str) {
     try {
         JSON.parse(str);
     } catch (e) {
@@ -55,10 +55,16 @@ function createTableFromLocalvalues(divId) {
     var expiredContract = "";
     var records = storage.get("records");
     if (records == false || records == "false") {
+        var url = location.href;
+        var urlFilename = url.substring(url.lastIndexOf('/') + 1);
+        if (urlFilename = "options.html") {
+            document.getElementById(divId).innerHTML = "";
+        }
+
         return;
     }
     var color = "";
-    jQuery.each(JSON.parse(records), function (_i, value) {
+    jQuery.each(records, function (_i, value) {
         if (value.dateTo <= today.getTime()) {
             color = "red";
         } else if ((value.dateTo - today.getTime()) > 604800000) // 7 days
@@ -67,7 +73,7 @@ function createTableFromLocalvalues(divId) {
         } else {
             color = "yellow";
         }
-        var textToAdd = "<tr style='background-color: " + color + "'><td>" + value.name + "</td><td>" + ConvertTimeToString(value.dateFrom) + "</td><td>" + ConvertTimeToString(value.dateTo) + "</td></tr>";
+        var textToAdd = "<tr style='background-color: " + color + "'><td>" + value.name + "</td><td>" + ConvertTimeToString(value.dateFrom) + "</td><td>" + ConvertTimeToString(value.dateTo) + "</td><td></td><td></td></tr>";
         if (color == "red") {
             expiredContract += textToAdd;
         } else {
@@ -76,4 +82,12 @@ function createTableFromLocalvalues(divId) {
     });
 
     document.getElementById(divId).innerHTML = (firstRow + actualContract + expiredRow + expiredContract);
+}
+function copyTextToClipboardById(id) {
+
+    var copyText = document.getElementById(id);
+    copyText.select();
+    document.execCommand("copy");
+
+    return copyText.value;
 }

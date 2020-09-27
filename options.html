@@ -71,6 +71,22 @@
         </td>
       </tr>
       <tr>
+        <td>
+          Url godziny/miesiąc
+        </td>
+        <td>
+          <input type="text" id="urlHoursMonthly" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Url godziny/umowa
+        </td>
+        <td>
+          <input type="text" id="urlHoursContract" />
+        </td>
+      </tr>
+      <tr>
         <td colspan="2">
           <button id="addNew">Dodaj</button>
         </td>
@@ -80,19 +96,34 @@
   <div style="float: right;">
     <table>
       <tr>
-        <td>
+        <td colspan="2">
           <b>Dodatkowe funkcje</b>
         </td>
       </tr>
       <tr>
-        <td>
+        <td colspan="2">
           <button style="color: red;" id="deleteAll">Usuń wszystkie umowy</button>
         </td>
       </tr>
+      <tr>
+        <td colspan="2">
+          <b>Import / Export umów</b>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button id="importButton">Import umów</button>
+        </td>
+        <td>
+          <button id="exportButton">Export umów</button>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <input id="importExport" type="text" />
+        </td>
+      </tr>
     </table>
-  </div>
-  <div>
-    <input type="text" id="importExport" />
   </div>
 </body>
 

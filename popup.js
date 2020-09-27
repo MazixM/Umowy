@@ -1,10 +1,10 @@
 var today = new Date();
 document.addEventListener('DOMContentLoaded', function () {
     //OnLoad do :
-    DisplaTodayTime();
+    displaTodayTime();
     createTableFromLocalvalues("mainTable");
 });
 
-function DisplaTodayTime() {
+function displaTodayTime() {
     document.getElementById("todayDate").innerHTML = ConvertTimeToString(today)
 };

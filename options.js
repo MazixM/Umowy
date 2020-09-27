@@ -3,14 +3,34 @@ document.addEventListener('DOMContentLoaded', function () {
     //OnLoad do :
     document.getElementById('addNew').addEventListener('click', function () {
         alert(addNewContract());
-        createTableFromLocalvalues("mainTable");
+        refreshTable();
     });
     document.getElementById('deleteAll').addEventListener('click', function () {
         deleteAllContracts();
-        createTableFromLocalvalues("mainTable");
+        refreshTable();
+        alert("Pomyślnie usunięto wszystkie rekordy.");
     });
-    createTableFromLocalvalues("mainTable");
+    document.getElementById('exportButton').addEventListener('click', function () {
+        document.getElementById('importExport').value = JSON.stringify(storage.get("records"));
+        copyTextToClipboardById('importExport');
+        alert("Pomyślnie skopiowano do schowka.");
+    });
+    document.getElementById('importButton').addEventListener('click', function () {
+        var textToImport = document.getElementById('importExport').value;
+        if (isJsonStringCorrect(textToImport)) {
+            storage.set("records", JSON.parse(textToImport));
+            refreshTable();
+            alert("Pomyślnie zaimportowano rekordy.");
+        } else {
+            alert("Podany JSON jest błędny.");
+        }
+    });
+    refreshTable();
 });
+
+function refreshTable() {
+    createTableFromLocalvalues("mainTable");
+}
 
 function addNewContract() {
     var name = document.getElementById("name").value;
@@ -50,6 +70,7 @@ function addNewContract() {
 function deleteContractByName(name) {
     alert(name);
 }
+
 function deleteAllContracts() {
     storage.set("records", false);
     storage.set("counter", false);
