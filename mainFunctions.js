@@ -53,10 +53,8 @@ function createTableFromLocalvalues(divId) {
     var expiredRow = "<tr><td colspan=\"5\"><b>Nieaktualne umowy</b></td></tr>";
     var actualContract = "";
     var expiredContract = "";
-    var records = JSON.stringify(storage.get("records"));
-    if (records == false) {
-        document.getElementById("mainTable").innerHTML = "<b>Dodaj swoją pierszą umowę w opcjach</b>";
-
+    var records = storage.get("records");
+    if (records == false || records == "false") {
         return;
     }
     var color = "";
