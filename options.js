@@ -1,12 +1,15 @@
+var today = new Date();
 document.addEventListener('DOMContentLoaded', function () {
     //OnLoad do :
     document.getElementById('addNew').addEventListener('click', function () {
-        document.getElementById('message').innerHTML = addNewContract();
+        alert(addNewContract());
+        createTableFromLocalvalues("mainTable");
     });
     document.getElementById('deleteAll').addEventListener('click', function () {
         deleteAllContracts();
-        alert("Usunięto");
+        createTableFromLocalvalues("mainTable");
     });
+    createTableFromLocalvalues("mainTable");
 });
 
 function addNewContract() {
@@ -43,13 +46,11 @@ function addNewContract() {
         return "Wybierz datę";
     }
 }
-function deleteContractByName(name) {
 
+function deleteContractByName(name) {
+    alert(name);
 }
 function deleteAllContracts() {
     storage.set("records", false);
     storage.set("counter", false);
-}
-function isValidDate(d) {
-    return d instanceof Date && !isNaN(d);
 }

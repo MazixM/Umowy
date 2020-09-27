@@ -4,34 +4,48 @@
 <head>
   <title>Opcje</title>
   <meta charset="UTF-8" />
-  <script src="options.js"></script>
-  <script src="mainFunctions.js"></script>
+  <script type="text/javascript" src="options.js"></script>
+  <script type="text/javascript" src="mainFunctions.js"></script>
+  <script type="text/javascript" src="jquery.js"></script>
   <style>
-    *{
+    * {
       text-align: center;
+      font-size: 14px;
     }
+
+    div {
+      float: left;
+    }
+
     button {
       height: 30px;
       width: 100%;
       outline: none;
     }
-    input{
+
+    input {
       width: 95%;
     }
-    table,
-    td {
-      border: 1px solid black;  
+
+    table {
+      margin: 1px, 1px;
     }
-    td{
-      padding: 2px;
+
+    td {
+      border: 1px solid black;
     }
   </style>
 </head>
 
 <body>
+  <div>
+    <table id="mainTable"></table>
+  </div>
   <div id="addNewContent">
     <table>
-      <tr><td colspan="2">Dodaj nową umowę</td></tr>
+      <tr>
+        <td colspan="2"><b>Dodaj nową umowę</b></td>
+      </tr>
       <tr>
         <td>
           Nazwa:
@@ -58,20 +72,27 @@
       </tr>
       <tr>
         <td colspan="2">
-          <span id="message"></span>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
           <button id="addNew">Dodaj</button>
         </td>
       </tr>
+    </table>
+  </div>
+  <div style="float: right;">
+    <table>
       <tr>
-        <td colspan="2">
-          <button style="color: red;" id="deleteAll">Usuń wszystkie</button>
+        <td>
+          <b>Dodatkowe funkcje</b>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button style="color: red;" id="deleteAll">Usuń wszystkie umowy</button>
         </td>
       </tr>
     </table>
+  </div>
+  <div>
+    <input type="text" id="importExport" />
   </div>
 </body>
 
