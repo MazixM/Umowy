@@ -11,8 +11,8 @@
       font-size: 16px;
       font-weight: 600;
       text-align: center;
-      min-width: 250px;
-      background-color: silver;
+      min-width: 300px;
+      background-color: #eee;
     }
 
     button {
@@ -23,6 +23,7 @@
 
     table,
     td {
+      margin: auto;
       border: 1px solid black;
       padding: 2px;
     }
@@ -31,20 +32,25 @@
       padding: 0px;
       border: none;
     }
+
+    progress {
+      width: 100%;
+    }
   </style>
 </head>
 
 <body>
   <div>
-    Dziś : <span id="todayDate"></span>
+    <a href='options.html' target='_blank' style="float: left;"><button style="height: auto;">OPCJE</button></a>
+    <b>Dziś : <span id="todayDate"></span></b>
+    <button id="refreshButton" style="width: auto;float:right;height: auto;">ODŚWIEŻ</button>
+    <progress id="progressBar" value="0">
+    </progress>
     <table id="mainTable">
       <tr>
         <td><b>Dodaj swoją pierszą umowę w <a href='options.html' target='_blank'>opcjach</a></b></td>
       </tr>
     </table>
-  </div>
-  <div>
-
   </div>
 
 </body>

@@ -20,7 +20,13 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function refreshTable() {
-    createTableFromLocalvalues("mainTable");
+    var records = storage.get("records");
+    if (records != "false" && records != false) {
+        createTableFromLocalvalues("mainTable");
+    }else
+    {
+        document.getElementById("mainTable").innerHTML="";
+    }
 }
 
 function exportContracts() {
@@ -43,8 +49,10 @@ function addNewContract() {
     var name = document.getElementById("name").value;
     var dateFrom = document.getElementById("dateFrom").value;
     var dateTo = document.getElementById("dateTo").value;
-    var urlHoursMonthly = document.getElementById("urlHoursMonthly").value;
-    var urlHoursContract = document.getElementById("urlHoursContract").value;
+    var urlHoursMonth = document.getElementById("urlHoursMonth").value;
+    var urlHoursYear = document.getElementById("urlHoursYear").value;
+    var hoursMonthMax = document.getElementById("hoursMonthMax").value;
+    var hoursYearMax = document.getElementById("hoursYearMax").value;
 
     dateFrom = new Date(dateFrom);
     dateTo = new Date(dateTo);
@@ -53,36 +61,35 @@ function addNewContract() {
 
         return;
     }
-    if (isValidDate(dateFrom) && isValidDate(dateTo)) {
-        var counter = storage.get("counter");
-        if (counter == false) {
-            counter = 0;
-        }
-        counter++;
-        storage.set("counter", counter);
-        var newContract = {
-            "name": name,
-            "dateFrom": dateFrom.getTime(),
-            "dateTo": dateTo.getTime(),
-            "urlHoursMonthly": urlHoursMonthly,
-            "urlHoursContract": urlHoursContract,
-            "hoursMonthly": hoursMonthly,
-            "HoursContract": HoursContract
-        };
-        var records = storage.get("records");
-        if (records == false) {
-            records = {};
-        }
-        records[counter] = newContract;
-        storage.set("records", records);
-        alert("Dodano");
-
-        return;
-    } else {
+    if (!(isValidDate(dateFrom) && isValidDate(dateTo))) {
         alert("Wybierz datę");
 
         return;
     }
+    var counter = storage.get("counter");
+    if (counter == false) {
+        counter = 0;
+    }
+    counter++;
+    storage.set("counter", counter);
+    var newContract = {
+        "name": name,
+        "dateFrom": dateFrom.getTime(),
+        "dateTo": dateTo.getTime(),
+        "urlHoursMonth": urlHoursMonth,
+        "urlHoursYear": urlHoursYear,
+        "hoursMonth": 0,
+        "hoursMonthMax": hoursMonthMax,
+        "hoursYear": 0,
+        "hoursYearMax": hoursYearMax
+    };
+    var records = storage.get("records");
+    if (records == false) {
+        records = {};
+    }
+    records[counter] = newContract;
+    storage.set("records", records);
+    alert("Dodano");
 }
 
 function deleteContractByName(name) {
