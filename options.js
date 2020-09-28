@@ -36,6 +36,8 @@ function addNewContract() {
     var name = document.getElementById("name").value;
     var dateFrom = document.getElementById("dateFrom").value;
     var dateTo = document.getElementById("dateTo").value;
+    var urlHoursMonthly = document.getElementById("urlHoursMonthly").value;
+    var urlHoursContract = document.getElementById("urlHoursContract").value;
 
     dateFrom = new Date(dateFrom);
     dateTo = new Date(dateTo);
@@ -52,7 +54,9 @@ function addNewContract() {
         var newContract = {
             "name": name,
             "dateFrom": dateFrom.getTime(),
-            "dateTo": dateTo.getTime()
+            "dateTo": dateTo.getTime(),
+            "urlHoursMonthly": urlHoursMonthly,
+            "urlHoursContract": urlHoursContract
         };
         var records = storage.get("records");
         if (records == false) {

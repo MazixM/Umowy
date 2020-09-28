@@ -47,6 +47,7 @@ function isJsonStringCorrect(str) {
     }
     return true;
 }
+
 function createTableFromLocalvalues(divId) {
     var firstRow = "<tr><td colspan=\"5\"><b>Aktualne umowy</b></td></tr>" +
         "<tr><td><b>Nazwa</b></td><td><b>Data od</b></td><td><b>Data do</b></td><td colspan=\"2\"><table id=\"clearBorder\"><tr><td colspan='2'><b>Godziny serwisowe</b></td></tr><tr><td>Ten miesiąc</td><td>Łącznie</td></tr></table></td></tr>";
@@ -63,8 +64,15 @@ function createTableFromLocalvalues(divId) {
 
         return;
     }
+
     var color = "";
     jQuery.each(records, function (_i, value) {
+        const regexFilter = '<span class="value">(?<time>.*)<\/span>';
+        const htmlContent = $.ajax({
+            url: value.urlHoursContract,
+            async: false
+        }).responseText;
+        var hour = htmlContent.execCommand(regexFilter);
         if (value.dateTo <= today.getTime()) {
             color = "red";
         } else if ((value.dateTo - today.getTime()) > 604800000) // 7 days
@@ -73,7 +81,7 @@ function createTableFromLocalvalues(divId) {
         } else {
             color = "yellow";
         }
-        var textToAdd = "<tr style='background-color: " + color + "'><td>" + value.name + "</td><td>" + ConvertTimeToString(value.dateFrom) + "</td><td>" + ConvertTimeToString(value.dateTo) + "</td><td></td><td></td></tr>";
+        var textToAdd = "<tr style='background-color: " + color + "'><td>" + value.name + "</td><td>" + ConvertTimeToString(value.dateFrom) + "</td><td>" + ConvertTimeToString(value.dateTo) + "</td><td>" + hour[1] + "</td><td></td></tr>";
         if (color == "red") {
             expiredContract += textToAdd;
         } else {
@@ -84,7 +92,6 @@ function createTableFromLocalvalues(divId) {
     document.getElementById(divId).innerHTML = (firstRow + actualContract + expiredRow + expiredContract);
 }
 function copyTextToClipboardById(id) {
-
     var copyText = document.getElementById(id);
     copyText.select();
     document.execCommand("copy");
