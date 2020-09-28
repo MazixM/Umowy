@@ -2,7 +2,7 @@ var today = new Date();
 document.addEventListener('DOMContentLoaded', function () {
     //OnLoad do :
     document.getElementById('addNew').addEventListener('click', function () {
-        alert(addNewContract());
+        addNewContract();
         refreshTable();
     });
     document.getElementById('deleteAll').addEventListener('click', function () {
@@ -11,19 +11,10 @@ document.addEventListener('DOMContentLoaded', function () {
         alert("Pomyślnie usunięto wszystkie rekordy.");
     });
     document.getElementById('exportButton').addEventListener('click', function () {
-        document.getElementById('importExport').value = JSON.stringify(storage.get("records"));
-        copyTextToClipboardById('importExport');
-        alert("Pomyślnie skopiowano do schowka.");
+        exportContracts();
     });
     document.getElementById('importButton').addEventListener('click', function () {
-        var textToImport = document.getElementById('importExport').value;
-        if (isJsonStringCorrect(textToImport)) {
-            storage.set("records", JSON.parse(textToImport));
-            refreshTable();
-            alert("Pomyślnie zaimportowano rekordy.");
-        } else {
-            alert("Podany JSON jest błędny.");
-        }
+        importContracts();
     });
     refreshTable();
 });
@@ -32,6 +23,22 @@ function refreshTable() {
     createTableFromLocalvalues("mainTable");
 }
 
+function exportContracts() {
+    document.getElementById('importExport').value = JSON.stringify(storage.get("records"));
+    copyTextToClipboardById('importExport');
+    alert("Pomyślnie skopiowano do schowka.");
+}
+
+function importContracts() {
+    var textToImport = document.getElementById('importExport').value;
+    if (isJsonStringCorrect(textToImport)) {
+        storage.set("records", JSON.parse(textToImport));
+        refreshTable();
+        alert("Pomyślnie zaimportowano rekordy.");
+    } else {
+        alert("Podany JSON jest błędny.");
+    }
+}
 function addNewContract() {
     var name = document.getElementById("name").value;
     var dateFrom = document.getElementById("dateFrom").value;
@@ -42,7 +49,9 @@ function addNewContract() {
     dateFrom = new Date(dateFrom);
     dateTo = new Date(dateTo);
     if (name.length < 3 || name.length > 20) {
-        return "Podaj nazwę [3-20]";
+        alert("Podaj nazwę [3-20]");
+
+        return;
     }
     if (isValidDate(dateFrom) && isValidDate(dateTo)) {
         var counter = storage.get("counter");
@@ -56,7 +65,9 @@ function addNewContract() {
             "dateFrom": dateFrom.getTime(),
             "dateTo": dateTo.getTime(),
             "urlHoursMonthly": urlHoursMonthly,
-            "urlHoursContract": urlHoursContract
+            "urlHoursContract": urlHoursContract,
+            "hoursMonthly": hoursMonthly,
+            "HoursContract": HoursContract
         };
         var records = storage.get("records");
         if (records == false) {
@@ -64,10 +75,13 @@ function addNewContract() {
         }
         records[counter] = newContract;
         storage.set("records", records);
+        alert("Dodano");
 
-        return "Dodano";
+        return;
     } else {
-        return "Wybierz datę";
+        alert("Wybierz datę");
+
+        return;
     }
 }
 
