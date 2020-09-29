@@ -1,4 +1,3 @@
-var today = new Date();
 document.addEventListener('DOMContentLoaded', function () {
     //OnLoad do :
     document.getElementById('addNew').addEventListener('click', function () {
@@ -65,7 +64,7 @@ function addNewContract() {
 
     dateFrom = new Date(dateFrom);
     dateTo = new Date(dateTo);
-    
+
     if (name.length < 3 || name.length > 20) {
         alert("Podaj nazwę [3-20]");
 
