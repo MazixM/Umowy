@@ -1,13 +1,12 @@
-var today = new Date();
 document.addEventListener('DOMContentLoaded', function () {
     //OnLoad do :
     displaTodayTime();
     var records = storage.get("records");
-    if (records != "false" && records != false) {
+    if (records) {
         createTableFromLocalvalues("mainTable");
     }
     document.getElementById('refreshButton').addEventListener('click', function () {
-        updateLocalRecordsTime("progressBar");
+        updateLocalRecordsTime();
         createTableFromLocalvalues("mainTable");
     });
 });

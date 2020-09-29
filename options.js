@@ -5,27 +5,34 @@ document.addEventListener('DOMContentLoaded', function () {
         addNewContract();
         refreshTable();
     });
-    document.getElementById('deleteAll').addEventListener('click', function () {
-        deleteAllContracts();
-        refreshTable();
-        alert("Pomyślnie usunięto wszystkie rekordy.");
+    document.getElementById('deleteAllButton').addEventListener('click', function () {
+        if (confirm("Czy na pewno chcesz usunąć wszystkie rekordy?")) {
+            deleteAllContracts();
+        }
+    });
+    document.getElementById('deleteContractButton').addEventListener('click', function () {
+        var name = prompt("Podaj nazwę, którą chcesz usunąć", "");
+        if (name) {
+            deleteContractByName(name);
+            refreshTable();
+        }
     });
     document.getElementById('exportButton').addEventListener('click', function () {
         exportContracts();
     });
     document.getElementById('importButton').addEventListener('click', function () {
-        importContracts();
+        if (confirm("Obecne rekordy zostaną usunięte, czy chcesz kontynuować?")) {
+            importContracts();
+        }
     });
     refreshTable();
 });
 
 function refreshTable() {
-    var records = storage.get("records");
-    if (records != "false" && records != false) {
+    if (storage.get("records")) {
         createTableFromLocalvalues("mainTable");
-    }else
-    {
-        document.getElementById("mainTable").innerHTML="";
+    } else {
+        document.getElementById("mainTable").innerHTML = "";
     }
 }
 
@@ -38,13 +45,15 @@ function exportContracts() {
 function importContracts() {
     var textToImport = document.getElementById('importExport').value;
     if (isJsonStringCorrect(textToImport)) {
-        storage.set("records", JSON.parse(textToImport));
+        var records = JSON.parse(textToImport);
+        storage.set("records", records);
         refreshTable();
         alert("Pomyślnie zaimportowano rekordy.");
     } else {
         alert("Podany JSON jest błędny.");
     }
 }
+
 function addNewContract() {
     var name = document.getElementById("name").value;
     var dateFrom = document.getElementById("dateFrom").value;
@@ -56,6 +65,7 @@ function addNewContract() {
 
     dateFrom = new Date(dateFrom);
     dateTo = new Date(dateTo);
+    
     if (name.length < 3 || name.length > 20) {
         alert("Podaj nazwę [3-20]");
 
@@ -66,12 +76,40 @@ function addNewContract() {
 
         return;
     }
-    var counter = storage.get("counter");
-    if (counter == false) {
-        counter = 0;
+    if (hoursMonthMax.length == 0) {
+        alert("Podaj liczbę godzin/Miesiąc");
+
+        return;
     }
-    counter++;
-    storage.set("counter", counter);
+    if (hoursYearMax.length == 0) {
+        alert("Podaj liczbę godzin/Rok");
+
+        return;
+    }
+    if (urlHoursMonth) {
+        if (!getTimeByUrl(urlHoursMonth)) {
+            alert("Podany link h/Miesiąc jest błędny lub nie jesteś zalogowany");
+
+            return;
+        }
+    } else {
+        alert("Podany link h/Miesiąc");
+
+        return;
+    }
+    if (urlHoursYear) {
+        if (!getTimeByUrl(urlHoursYear)) {
+            alert("Podany link h/Rok jest błędny lub nie jesteś zalogowany");
+
+            return;
+        }
+    } else {
+        alert("Podany link h/Rok");
+
+        return;
+    }
+
+
     var newContract = {
         "name": name,
         "dateFrom": dateFrom.getTime(),
@@ -84,19 +122,34 @@ function addNewContract() {
         "hoursYearMax": hoursYearMax
     };
     var records = storage.get("records");
-    if (records == false) {
+    if (!records) {
         records = {};
     }
-    records[counter] = newContract;
+    records[Object.keys(records).length + 1] = newContract;
     storage.set("records", records);
     alert("Dodano");
 }
 
 function deleteContractByName(name) {
-    alert(name);
+    var records = storage.get("records");
+    var removed = false;
+    jQuery.each(records, function (_i, value) {
+        if (value.name == name) {
+            delete records[_i];
+            removed = true;
+            return false;
+        }
+    });
+    if (removed) {
+        storage.set("records", records);
+        alert("Pomyślnie usnięto '" + name + "'");
+    } else {
+        alert("Nie znaleziono rekordu o nazwie '" + name + "'");
+    }
 }
 
 function deleteAllContracts() {
     storage.set("records", false);
-    storage.set("counter", false);
+    refreshTable();
+    alert("Pomyślnie usunięto wszystkie rekordy.");
 }

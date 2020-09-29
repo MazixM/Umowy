@@ -7,40 +7,11 @@
   <script type="text/javascript" src="options.js"></script>
   <script type="text/javascript" src="mainFunctions.js"></script>
   <script type="text/javascript" src="jquery.js"></script>
-  <style>
-    * {
-      text-align: center;
-      font-size: 14px;
-    }
+  <link rel="stylesheet" href="options.css">
 
-    div {
-      float: left;
-    }
-
-    button {
-      height: 30px;
-      width: 100%;
-      outline: none;
-    }
-
-    input {
-      width: 95%;
-    }
-
-    table {
-      margin: 1px;
-    }
-
-    td {
-      border: 1px solid black;
-    }
-  </style>
 </head>
 
 <body>
-  <div>
-    <table id="mainTable"></table>
-  </div>
   <div id="addNewContent">
     <table>
       <tr>
@@ -72,6 +43,22 @@
       </tr>
       <tr>
         <td>
+          Łączne godziny/miesiąc
+        </td>
+        <td>
+          <input type="number" id="hoursMonthMax" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Łączne godziny/rok
+        </td>
+        <td>
+          <input type="number" id="hoursYearMax" />
+        </td>
+      </tr>
+      <tr>
+        <td>
           Url godziny/miesiąc
         </td>
         <td>
@@ -87,27 +74,14 @@
         </td>
       </tr>
       <tr>
-        <td>
-          Łączne godziny/miesiąc
-        </td>
-        <td>
-          <input type="text" id="hoursMonthMax" />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Łączne godziny/rok
-        </td>
-        <td>
-          <input type="text" id="hoursYearMax" />
-        </td>
-      </tr>
-      <tr>
         <td colspan="2">
           <button id="addNew">Dodaj</button>
         </td>
       </tr>
     </table>
+  </div>
+  <div>
+    <table id="mainTable"></table>
   </div>
   <div style="float: right;">
     <table>
@@ -118,7 +92,12 @@
       </tr>
       <tr>
         <td colspan="2">
-          <button style="color: red;" id="deleteAll">Usuń wszystkie umowy</button>
+          <button style="color: red;" id="deleteAllButton">Usuń wszystkie umowy</button>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <button style="color: red;" id="deleteContractButton">Usuń wybraną umowę</button>
         </td>
       </tr>
       <tr>
@@ -139,8 +118,14 @@
           <input id="importExport" type="text" />
         </td>
       </tr>
+      <tr>
+        <td colspan="2">
+          <a href="log.html" target="_blank"><button>Pokaż logi</button></a>
+        </td>
+      </tr>
     </table>
   </div>
+
 </body>
 
 </html>
