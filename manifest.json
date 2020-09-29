@@ -3,8 +3,6 @@
   "version": "1.0",
   "description": "Zapamiętywanie dat obowiązywania umów",
   "permissions": [
-    "activeTab",
-    "declarativeContent",
     "storage",
     "https://pomoc.systemeg.eu/"
   ],
