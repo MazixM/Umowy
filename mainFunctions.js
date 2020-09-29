@@ -126,6 +126,8 @@ function updateLocalRecordsTime() {
     progress.max = Object.keys(records).length;
 
     jQuery.each(records, function (_i, value) {
+        //TODO async
+        progress.value = _i;
         value.hoursMonth = getTimeByUrlOrReturnDefault(value.urlHoursMonth, value.hoursMonth);
         value.hoursYear = getTimeByUrlOrReturnDefault(value.urlHoursYear, value.hoursYear);
     });
