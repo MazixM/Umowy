@@ -1,8 +1,14 @@
-var today = new Date();
 document.addEventListener('DOMContentLoaded', function () {
     //OnLoad do :
     displaTodayTime();
-    createTableFromLocalvalues("mainTable");
+    var records = storage.get("records");
+    if (records) {
+        createTableFromLocalvalues("mainTable");
+    }
+    document.getElementById('refreshButton').addEventListener('click', function () {
+        updateLocalRecordsTime();
+        createTableFromLocalvalues("mainTable");
+    });
 });
 
 function displaTodayTime() {

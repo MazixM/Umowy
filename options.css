@@ -1,0 +1,36 @@
+* {
+  text-align: center;
+  font-size: 14px;
+}
+
+div {
+  float: left;
+}
+
+button {
+  height: 30px;
+  width: 100%;
+  outline: none;
+}
+
+input {
+  width: 95%;
+}
+
+table {
+  margin: 1px;
+}
+
+td {
+  border: 2px solid black;
+  padding: 2px;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
