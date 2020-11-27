@@ -111,7 +111,7 @@ function getTimeByUrl(webURL) {
     if (htmlContent) {
         var regex = htmlContent.match(regexFilter);
         if (regex) {
-            return regex[0];
+            return regex[1];
         }
     }
     storage.log("Nie znaleziono godziny dla URL: " + webURL)
