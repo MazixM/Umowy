@@ -2,129 +2,129 @@
 <html>
 
 <head>
-  <title>Opcje</title>
-  <meta charset="UTF-8" />
-  <script type="text/javascript" src="options.js"></script>
-  <script type="text/javascript" src="mainFunctions.js"></script>
-  <script type="text/javascript" src="jquery.js"></script>
-  <link rel="stylesheet" href="options.css">
+    <title>Opcje</title>
+    <meta charset="UTF-8" />
+    <script type="text/javascript" src="options.js"></script>
+    <script type="text/javascript" src="mainFunctions.js"></script>
+    <script type="text/javascript" src="jquery.js"></script>
+    <link rel="stylesheet" href="options.css">
 
 </head>
 
 <body>
-  <div id="addNewContent">
-    <table>
-      <tr>
-        <td colspan="2"><b>Dodaj nową umowę</b></td>
-      </tr>
-      <tr>
-        <td>
-          Nazwa:
-        </td>
-        <td>
-          <input type="text" id="name" />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Data od:
-        </td>
-        <td>
-          <input type="date" id="dateFrom" />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Data do:
-        </td>
-        <td>
-          <input type="date" id="dateTo" />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Łączne godziny/miesiąc
-        </td>
-        <td>
-          <input type="number" id="hoursMonthMax" />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Łączne godziny/rok
-        </td>
-        <td>
-          <input type="number" id="hoursYearMax" />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Url godziny/miesiąc
-        </td>
-        <td>
-          <input type="text" id="urlHoursMonth" />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Url godziny/rok
-        </td>
-        <td>
-          <input type="text" id="urlHoursYear" />
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <button id="addNew">Dodaj</button>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div>
-    <table id="mainTable"></table>
-  </div>
-  <div style="float: right;">
-    <table>
-      <tr>
-        <td colspan="2">
-          <b>Dodatkowe funkcje</b>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <button style="color: red;" id="deleteAllButton">Usuń wszystkie umowy</button>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <button style="color: red;" id="deleteContractButton">Usuń wybraną umowę</button>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <b>Import / Export umów</b>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <button id="importButton">Import umów</button>
-        </td>
-        <td>
-          <button id="exportButton">Export umów</button>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <input id="importExport" type="text" />
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <a href="log.html" target="_blank"><button>Pokaż logi</button></a>
-        </td>
-      </tr>
-    </table>
-  </div>
+    <div id="addNewContent">
+        <table>
+            <tr>
+                <td colspan="2"><b>Dodaj nową umowę</b></td>
+            </tr>
+            <tr>
+                <td>
+                    Nazwa:
+                </td>
+                <td>
+                    <input type="text" id="name" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Data od:
+                </td>
+                <td>
+                    <input type="date" id="dateFrom" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Data do:
+                </td>
+                <td>
+                    <input type="date" id="dateTo" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Łączne godziny/miesiąc
+                </td>
+                <td>
+                    <input type="number" id="hoursMonthMax" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Łączne godziny/rok
+                </td>
+                <td>
+                    <input type="number" id="hoursYearMax" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Url godziny/miesiąc
+                </td>
+                <td>
+                    <input type="text" id="urlHoursMonth" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Url godziny/rok
+                </td>
+                <td>
+                    <input type="text" id="urlHoursYear" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button id="addNew">Dodaj</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table id="mainTable"></table>
+    </div>
+    <div style="float: right;">
+        <table>
+            <tr>
+                <td colspan="2">
+                    <b>Dodatkowe funkcje</b>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button style="color: red;" id="deleteAllButton">Usuń wszystkie umowy</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button style="color: red;" id="deleteContractButton">Usuń wybraną umowę</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <b>Import / Export umów</b>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button id="importButton">Import umów</button>
+                </td>
+                <td>
+                    <button id="exportButton">Export umów</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input id="importExport" type="text" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <a href="log.html" target="_blank"><button>Pokaż logi</button></a>
+                </td>
+            </tr>
+        </table>
+    </div>
 
 </body>
 
